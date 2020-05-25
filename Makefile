@@ -1,15 +1,15 @@
 CXX = g++
 CXXFLAGS = -Wall
 
-proj0: driver.o test.o
-	$(CXX) $(CXXFLAGS) driver.o test.o -o proj0
+proj0: driver.o mytest.o
+	$(CXX) $(CXXFLAGS) driver.o mytest.o -o proj0
 
 
 driver.o: stack.h driver.cpp
 	$(CXX) $(CXXFLAGS) -c driver.cpp
 
 
-test.o: stack.h mytest.cpp
+mytest.o: stack.h mytest.cpp
 	$(CXX) $(CXXFLAGS) -c mytest.cpp
 
 
