@@ -16,28 +16,31 @@
 
 using namespace std;
 
+/*
 int main() {
-  Stack<int> intStack;
+    Stack<int> intStack;
 
-  cout << "\nPush integers on stack and dump contents:\n";
-  for (int i = 1; i <= 10; i++) {
-    intStack.push(i);
-  }
+    cout << "\nPush integers on stack and dump contents:\n";
+    for (int i = 1; i <= 10; i++) {
+        intStack.push(i);
+    }
 
-  intStack.dump();
+    intStack.dump();
 
-  cout << "\nRead contents using top() and pop():\n";
-  while ( not intStack.empty() ) {
-    cout << intStack.top() << endl;
-    intStack.pop();
-  }
+    cout << "\nRead contents using top() and pop():\n";
+    while (not intStack.empty()) {
+        cout << intStack.top() << endl;
+        intStack.pop();
+    }
 
-  cout << "\nAttempt pop() of empty stack:\n";
-  try {
-    intStack.pop();
-  } catch (exception &e) {
-    cout << "Caught exception:\n" << e.what() << endl;
-  }
+    cout << "\nAttempt pop() of empty stack:\n";
+    try {
+        intStack.pop();
+    }
+    catch (exception& e) {
+        cout << "Caught exception:\n" << e.what() << endl;
+    }
 
-  return 0;
+    return 0;
 }
+*/
