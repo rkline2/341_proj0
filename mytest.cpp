@@ -16,20 +16,6 @@
 #include "stack.h"
 using namespace std;
 
-template <class T>
-void Fill_Stack(Stack<T>& source) {
-	for (auto i = 1; i <= 10; i++) {
-		source.push(i);
-	}
-}
-
-template <class T>
-void Empty_Stack(Stack<T>& source) {
-	while (not source.empty()) {
-		source.pop();
-	}
-}
-
 int main() {
 	Stack<int> intStack_1, intStack2;
 
