@@ -94,6 +94,7 @@ Stack<T>::Stack(const Stack<T>& rhs) {
     // ********************************
     // Implement the copy constructor
     // ********************************
+    _head = nullptr;
     Node<T>* rhs_curr = rhs._head;
     Node<T>* prev_cpy = _head, *curr_cpy = _head;
 
