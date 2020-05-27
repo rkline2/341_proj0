@@ -89,6 +89,7 @@ Stack<T>::Stack() {
     _head = nullptr;
 }
 
+// Given a LL, creats a deep copy of the LL
 template <class T>
 Stack<T>::Stack(const Stack<T>& rhs) {
     // ********************************
@@ -125,6 +126,7 @@ Stack<T>::Stack(const Stack<T>& rhs) {
     }
 }
 
+// Given a LL, returns a deep copy of the LL
 template <class T>
 const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
 
@@ -177,6 +179,7 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
     return *this;
 }
 
+// Deletes all nodes in the LL
 template <class T>
 Stack<T>::~Stack() {
 
