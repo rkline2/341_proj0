@@ -82,6 +82,60 @@ private:
     // Any private helper functions must be delared here!
     // ***************************************************
 
+    // Name: Clear_Stack
+    // Description: This is a helper function that clears out
+    // the stack (*this)
+    // Pre-Conditions: Current stack exists  
+    // Post-Conditions: Clears out the current stack 
+    void Clear_Stack() {
+        Node<T>* curr_cpy = _head;
+        while (curr_cpy != nullptr) {
+            Node<T>* prev = curr_cpy;
+            curr_cpy = curr_cpy->_next;
+
+            delete prev;
+            prev = nullptr;
+        }
+        _head = nullptr;
+    }
+
+    // Name: Copy_Stack 
+    // Description: This is a helper function that performs a deep
+    // copy of the nodes from the source stack to the new stack (*this)
+    // Pre-Conditions: Source stack exists and passed as a parameter 
+    // Post-Conditions: returns a deep copy of the 
+    // source stack to the new stack
+    void Copy_Stack(const Stack<T>& rhs) {
+        _head = nullptr;
+        Node<T>* rhs_curr = rhs._head;
+        Node<T>* prev_cpy = _head, * curr_cpy = _head;
+
+        // creates _head if the source is not a empty LL
+        if (rhs_curr != nullptr) {
+            _head = new Node<T>(rhs._head->_data);
+
+            // rhs moves up one node
+            rhs_curr = rhs_curr->_next;
+
+            // sets up the two pointers for deep copying
+            prev_cpy = _head;
+            curr_cpy = _head->_next;
+        }
+        while (rhs_curr != nullptr) {
+
+            // creates a new node and copy data  
+            curr_cpy = new Node<T>(rhs_curr->_data);
+
+            // have _next point to the new node  
+            prev_cpy->_next = curr_cpy;
+
+            // rhs & new LL move up one node
+            prev_cpy = curr_cpy;
+            curr_cpy = curr_cpy->_next;
+            rhs_curr = rhs_curr->_next;
+            curr_cpy = nullptr;
+        }
+    }
 };
 
 template <class T>
@@ -96,35 +150,10 @@ Stack<T>::Stack(const Stack<T>& rhs) {
     // ********************************
     // Implement the copy constructor
     // ********************************
-    _head = nullptr;
-    Node<T>* rhs_curr = rhs._head;
-    Node<T>* prev_cpy = _head, *curr_cpy = _head;
+    Stack<T>* newStack = this;
 
-    // creates _head if the source is not a empty LL
-    if (rhs_curr != nullptr) {
-        _head = new Node<T>(rhs._head->_data);
-
-        // rhs moves up one node
-        rhs_curr = rhs_curr->_next;
-
-        // sets up the two pointers for deep copying
-        prev_cpy = _head;
-        curr_cpy = _head->_next;
-    }
-    while (rhs_curr != nullptr) {
-
-        // creates a new node and copy data  
-        curr_cpy = new Node<T>(rhs_curr->_data);
-
-        // have _next point to the new node  
-        prev_cpy->_next = curr_cpy;
-
-        // rhs & new LL move up one node
-        prev_cpy = curr_cpy;
-        curr_cpy = curr_cpy->_next;
-        rhs_curr = rhs_curr->_next;
-        curr_cpy = nullptr;
-    }
+    // makes a deep copy from using source as a parameter
+    newStack->Copy_Stack(rhs);
 }
 
 // Given a LL, returns a deep copy of the
@@ -136,48 +165,14 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
     // Implement the assignment operator
     // **********************************
     if (this != &rhs) {
-        Node<T>* rhs_curr = rhs._head;
-        Node<T>* curr_cpy = _head, * prev_cpy = _head;
-        
+        Stack<T>* newStack = this;
+
         // clears out the previous stack
-        while (curr_cpy != nullptr) {
-            Node<T>* prev = curr_cpy;
-            curr_cpy = curr_cpy->_next;
+        newStack->Clear_Stack();
 
-            delete prev; 
-            prev = nullptr;
-        }
-        _head = nullptr;
-
-        // creates _head if the source is not a empty LL
-        if (rhs_curr != nullptr) {
-            _head = new Node<T>(rhs._head->_data);
-
-            // rhs moves up one node
-            rhs_curr = rhs_curr->_next;
-
-            // sets up the two pointers for deep copying
-            prev_cpy = _head;
-            curr_cpy = _head->_next;
-        }
-
-        while (rhs_curr != nullptr) {
-
-            // creates a new node and copy data  
-            curr_cpy = new Node<T>(rhs_curr->_data);
-
-            // have _next point to the new node  
-            prev_cpy->_next = curr_cpy;
-
-            // rhs & copy LL move up one node
-            prev_cpy = curr_cpy;
-            curr_cpy = curr_cpy->_next;
-            rhs_curr = rhs_curr->_next;
-            curr_cpy = nullptr;
-        }
-
+        // makes a deep copy from using source as a parameter
+        newStack->Copy_Stack(rhs);
     }
-
     return *this;
 }
 
