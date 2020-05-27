@@ -181,7 +181,7 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
     return *this;
 }
 
-// Deletes all nodes in the LL
+// Deletes all nodes in the stack
 template <class T>
 Stack<T>::~Stack() {
 
