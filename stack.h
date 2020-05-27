@@ -89,7 +89,8 @@ Stack<T>::Stack() {
     _head = nullptr;
 }
 
-// Given a LL, creats a deep copy of the LL
+// Given a LL, creats a deep copy of the
+// source to the new stack
 template <class T>
 Stack<T>::Stack(const Stack<T>& rhs) {
     // ********************************
@@ -103,7 +104,7 @@ Stack<T>::Stack(const Stack<T>& rhs) {
     if (rhs_curr != nullptr) {
         _head = new Node<T>(rhs._head->_data);
 
-        // rhs moves up one 
+        // rhs moves up one node
         rhs_curr = rhs_curr->_next;
 
         // sets up the two pointers for deep copying
@@ -118,7 +119,7 @@ Stack<T>::Stack(const Stack<T>& rhs) {
         // have _next point to the new node  
         prev_cpy->_next = curr_cpy;
 
-        // rhs & copy LL moves up one
+        // rhs & new LL move up one node
         prev_cpy = curr_cpy;
         curr_cpy = curr_cpy->_next;
         rhs_curr = rhs_curr->_next;
@@ -126,7 +127,8 @@ Stack<T>::Stack(const Stack<T>& rhs) {
     }
 }
 
-// Given a LL, returns a deep copy of the LL
+// Given a LL, returns a deep copy of the
+// source to the new stack
 template <class T>
 const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
 
@@ -137,7 +139,7 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
         Node<T>* rhs_curr = rhs._head;
         Node<T>* curr_cpy = _head, * prev_cpy = _head;
         
-        // clears out the previous LL
+        // clears out the previous stack
         while (curr_cpy != nullptr) {
             Node<T>* prev = curr_cpy;
             curr_cpy = curr_cpy->_next;
@@ -151,7 +153,7 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
         if (rhs_curr != nullptr) {
             _head = new Node<T>(rhs._head->_data);
 
-            // rhs moves up one 
+            // rhs moves up one node
             rhs_curr = rhs_curr->_next;
 
             // sets up the two pointers for deep copying
@@ -167,7 +169,7 @@ const Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
             // have _next point to the new node  
             prev_cpy->_next = curr_cpy;
 
-            // rhs & copy LL moves up one
+            // rhs & copy LL move up one node
             prev_cpy = curr_cpy;
             curr_cpy = curr_cpy->_next;
             rhs_curr = rhs_curr->_next;
